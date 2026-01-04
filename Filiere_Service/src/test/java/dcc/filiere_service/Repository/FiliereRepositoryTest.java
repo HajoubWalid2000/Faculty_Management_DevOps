@@ -1,12 +1,17 @@
 package dcc.filiere_service.Repository;
 
 import dcc.filiere_service.Entites.Filiere;
+import dcc.filiere_service.configuration.RsaKeys;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class FiliereRepositoryTest {
+
+    @MockBean
+    private RsaKeys rsaKeys; // Mock le bean pour ne pas charger la vraie clé (Important SVP !!)
 
     @Autowired
     private FiliereRepository filiereRepository;
