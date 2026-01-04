@@ -8,5 +8,4 @@ public interface FiliereRepository extends JpaRepository<Filiere, Integer> {
 
     public Filiere findFiliereByCode(String code);
 
-
 }

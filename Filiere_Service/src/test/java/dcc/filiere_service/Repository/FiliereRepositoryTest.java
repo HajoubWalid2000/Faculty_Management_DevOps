@@ -11,40 +11,39 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class FiliereRepositoryTest {
 
     @Autowired
     private FiliereRepository filiereRepository;
 
-
     @BeforeEach
-    void setUp() {
-        filiereRepository.save(new Filiere(null,"MIP_T","Math Info physique Test"));
-        filiereRepository.save(new Filiere(null,"SMA_T","Math appliquee Test"));
+    void setUp(){
+        filiereRepository.save(new Filiere(null,"SMA","Math appliquee"));
+        filiereRepository.save(new Filiere(null,"DCC","DEVOPS et Cloud"));
     }
 
     @Test
-    void shouldfindbycode(){
-        String code= "MIP_T";
-        Filiere filiere = new Filiere(null,"MIP_T","Math Info physique Test");
+    void findFiliereByCode(){
+        String code = "DCC";
+        Filiere filiere_attendu = new Filiere(null,"DCC","DEVOPS et Cloud");
 
-        Filiere Result = filiereRepository.findFiliereByCode(code);
-        AssertionsForClassTypes.assertThat(Result).isNotNull();
-        AssertionsForClassTypes.assertThat(Result).usingRecursiveComparison().
-                ignoringFields("idFiliere").isEqualTo(filiere);
+        Filiere result = filiereRepository.findFiliereByCode(code);
+
+        AssertionsForClassTypes.assertThat(result).isNotNull();
+        AssertionsForClassTypes.assertThat(result).usingRecursiveComparison().ignoringFields("idFiliere").isEqualTo(filiere_attendu);
+
     }
 
     @Test
-    void NoTshouldfindbycode(){
-        String code= "yyy";
-
-        Filiere Result = filiereRepository.findFiliereByCode(code);
-        AssertionsForClassTypes.assertThat(Result).isNull();
+    void Not_findFiliereByCode(){
+        String code = "XXX";
+        Filiere result = filiereRepository.findFiliereByCode(code);
+        AssertionsForClassTypes.assertThat(result).isNull();
 
     }
+
 
 }

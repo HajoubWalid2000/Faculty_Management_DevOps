@@ -6,8 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class FiliereServiceApplicationTests {
 
-    /*
-    @Test
+   /* @Test
     void contextLoads() {
     }*/
 

@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FiliereMapper {
+public class  FiliereMapper {
     public Filiere DTO_to_Filiere(RequestFiliereDTO requestFiliereDTO) {
         Filiere filiere = new Filiere();
         BeanUtils.copyProperties(requestFiliereDTO, filiere);

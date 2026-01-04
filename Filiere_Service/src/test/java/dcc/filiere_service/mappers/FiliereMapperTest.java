@@ -5,35 +5,32 @@ import dcc.filiere_service.DTO.ResponseFiliereDTO;
 import dcc.filiere_service.Entites.Filiere;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FiliereMapperTest {
 
+    FiliereMapper filiereMapper = new FiliereMapper();
 
-    private FiliereMapper filiereMapper = new FiliereMapper();
     @Test
     void DTO_to_Filiere() {
-        RequestFiliereDTO requestFiliereDTO = new RequestFiliereDTO("SMI","MATH INFO");
-        Filiere filiere = new Filiere(null,"SMI","MATH INFO");
+
+        RequestFiliereDTO requestFiliereDTO= new RequestFiliereDTO("SMA","MATH Appliquee");
+        Filiere filiere_attendu = new Filiere(null,"SMA","MATH Appliquee");
 
         Filiere result = filiereMapper.DTO_to_Filiere(requestFiliereDTO);
         AssertionsForClassTypes.assertThat(result).isNotNull();
-        AssertionsForClassTypes.assertThat(result).usingRecursiveComparison().isEqualTo(filiere);
-
-
+        AssertionsForClassTypes.assertThat(result).usingRecursiveComparison().isEqualTo(filiere_attendu);
     }
 
     @Test
     void filiere_To_DTO() {
-
-        Filiere filiere = new Filiere(null,"SMI","MATH INFO");
-        ResponseFiliereDTO responseFiliereDTO = new ResponseFiliereDTO (null,"SMI","MATH INFO");
+        Filiere filiere = new Filiere(1,"SMA","MATH Appliquee");
+        ResponseFiliereDTO response_attendu = new ResponseFiliereDTO(1,"SMA","MATH Appliquee");
 
         ResponseFiliereDTO result = filiereMapper.Filiere_To_DTO(filiere);
         AssertionsForClassTypes.assertThat(result).isNotNull();
-        AssertionsForClassTypes.assertThat(result).usingRecursiveComparison().isEqualTo(responseFiliereDTO);
+        AssertionsForClassTypes.assertThat(result).usingRecursiveComparison().isEqualTo(response_attendu);
 
 
     }
